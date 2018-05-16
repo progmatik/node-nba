@@ -13,4 +13,4 @@ const HttpHelper = () => {
   }
 }
 
-export default HttpHelper;
+export const HttpHelperInstance = Object.create(HttpHelper());

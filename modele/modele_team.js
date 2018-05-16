@@ -1,6 +1,6 @@
-import HttpHelper from './httpHelper.js'
+import {HttpHelperInstance} from './httpHelper.js'
 function ModeleRankingTeam(rankingDate) {
-  const httpHelper = Object.create(HttpHelper());
+//  const httpHelper = Object.create(HttpHelper());
   return {
    /**
     * Call Nba Standing
@@ -10,7 +10,7 @@ function ModeleRankingTeam(rankingDate) {
     * @return {Promise}
     */
     callNbaStanding: (url, options) => 
-      httpHelper.gotWrapper(url, options)
+      HttpHelperInstance.gotWrapper(url, options)
   }
 }
 
