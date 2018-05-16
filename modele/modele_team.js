@@ -1,4 +1,4 @@
-import {HttpHelperInstance} from './httpHelper.js'
+import { HttpHelperInstance } from './httpHelper.js'
 function ModeleRankingTeam(rankingDate) {
   return {
    /**
