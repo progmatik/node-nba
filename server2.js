@@ -4,8 +4,17 @@ import ControllerRankingTeam from './controller/controller_equipe.js';
 var express = require('express');
 var path = require('path');
 var app = express();
-const sendStanding = (datas) => {
-  const teamsInstance = datas.body.resultSets[5].rowSet.map((team, index) => {
+/**
+ * Send Standing
+ * @public
+ * @param {Object} datas
+ * @param {Number} Index of the conference Standing In the response 
+ * array 4 for East and 5 for West
+ *
+ * @return {Array} teamsInstance
+ */
+const sendStanding = (datas, index) => {
+  const teamsInstance = datas.body.resultSets[index].rowSet.map((team, index) => {
     const propsTeam = {
       idTeam: team[0],
       leagueID: team[1],
@@ -19,10 +28,10 @@ const sendStanding = (datas) => {
       percentageWin: team[9],
       homeRecord: team[10],
       roadRecord: team[11]
-     };
-     // Instanciate the Modele Data to populate and send it
-     const controllerRankingTeam = new ControllerRankingTeam(propsTeam);
-     return controllerRankingTeam;
+    };
+    // Instanciate the Modele Data to populate and send it
+    const controllerRankingTeam = new ControllerRankingTeam(propsTeam);
+    return controllerRankingTeam;
   })  
   return teamsInstance;
 };
@@ -39,7 +48,12 @@ app.get('/controller/equipe', function(req, res) {
   // Instanciate The Api Call
   const modeleRankingTeam = Object.create(ModeleRankingTeam('06/26/26'));
   modeleRankingTeam.callNbaStanding(requestURI.URI.standing, requestURI.requestOptions)
-    .then(resu => res.send(sendStanding(resu)))
+    .then(resu => { 
+      const conferenceEastStanding = sendStanding(resu, 4);
+      const conferenceWestStanding = sendStanding(resu, 5); 
+      const standings = [conferenceEastStanding, conferenceWestStanding];
+      res.send(standings);
+    })
     .catch(err => res.send(err))
 });
 
