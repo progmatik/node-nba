@@ -14,7 +14,8 @@ var app = express();
  * @return {Array} teamsInstance
  */
 const sendStanding = (datas, index) => {
-  const teamsInstance = datas.body.resultSets[index].rowSet.map((team, index) => {
+  // Initialise Team Instance Variable with Controller Team Data 
+  const teamsCollection = datas.body.resultSets[index].rowSet.map((team, index) => {
     const propsTeam = {
       idTeam: team[0],
       leagueID: team[1],
@@ -33,7 +34,7 @@ const sendStanding = (datas, index) => {
     const controllerRankingTeam = new ControllerRankingTeam(propsTeam);
     return controllerRankingTeam;
   })  
-  return teamsInstance;
+  return teamsCollection;
 };
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
