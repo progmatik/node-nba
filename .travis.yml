@@ -6,7 +6,8 @@ node_js:
 install:
   - npm install
 
-script: npm t
+script: 
+  - npm t
 
 cache:
   directories:
