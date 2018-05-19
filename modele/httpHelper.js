@@ -8,8 +8,8 @@ const HttpHelper = () => {
     * @param {Object} options
     * @return {Promise}
     */
-    gotWrapper: (url, options) =>
-      got(url, options)
+    gotWrapper: async (url, options) =>
+      await got(url, options)
   }
 }
 

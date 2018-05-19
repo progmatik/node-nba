@@ -38,24 +38,29 @@ const sendStanding = (datas, index) => {
 };
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000');
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
   next();
 });
 
-app.get('/controller/equipe', function(req, res) {
+app.get('/controller/equipe', async function(req, res) {
   // Instanciate The Api Call
-  const modeleRankingTeam = Object.create(ModeleRankingTeam('06/26/26'));
-  modeleRankingTeam.callNbaStanding(requestURI.URI.standing, requestURI.requestOptions)
-    .then(resu => { 
-      const conferenceEastStanding = sendStanding(resu, 4);
-      const conferenceWestStanding = sendStanding(resu, 5); 
-      const standings = [conferenceEastStanding, conferenceWestStanding];
-      res.send(standings);
-    })
-    .catch(err => res.send(err))
+  try {
+    const modeleRankingTeam = Object.create(ModeleRankingTeam('06/26/26'));
+    const resu = await modeleRankingTeam.callNbaStanding(requestURI.URI.standing, requestURI.requestOptions);
+    const conferenceEastStanding = sendStanding(resu, 4);
+    const conferenceWestStanding = sendStanding(resu, 5); 
+    const standings = [ 
+      conferenceEastStanding, 
+      conferenceWestStanding
+    ];
+    res.send(standings);
+  } catch (e) {
+
+    return e;
+  }
 });
 
 app.listen(8080);

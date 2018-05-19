@@ -9,8 +9,8 @@ function ModeleRankingTeam(rankingDate) {
     * @param {Object} options
     * @return {Promise}
     */
-    callNbaStanding: (url, options) => 
-      HttpHelperInstance.gotWrapper(url, options)
+    callNbaStanding: async (url, options) => 
+      await HttpHelperInstance.gotWrapper(url, options)
   }
 }
 
