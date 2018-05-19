@@ -1,5 +1,5 @@
 let URI = {
-  standing: "http://stats.nba.com/stats/scoreboard?DayOffset=0&LeagueID=00&gameDate=06/26/2017"
+  standing: "http://stats.nba.com/stats/scoreboard?DayOffset=0&LeagueID=00&gameDate="
 };
 
 const requestOptions = {

@@ -2,6 +2,7 @@ import ModeleRankingTeam from './modele/modele_team.js';
 import requestURI from './modele/nbaURI.js';
 import ControllerRankingTeam from './controller/controller_equipe.js';
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 /**
@@ -36,20 +37,34 @@ const sendStanding = (datas, index) => {
   })  
   return teamsCollection;
 };
+/**
+ *
+ * Middleware
+ *
+ */
+app.use(bodyParser.json());
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000');
+  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
   next();
 });
 
-app.get('/controller/equipe', async function(req, res) {
+/**
+ * POST ROUTE
+ * /controller/equipe
+ * @return {Json} Collection of Conferences Standing
+ *
+ */
+app.post('/controller/equipe', async function(req, res) {
   // Instanciate The Api Call
   try {
-    const modeleRankingTeam = Object.create(ModeleRankingTeam('06/26/26'));
-    const resu = await modeleRankingTeam.callNbaStanding(requestURI.URI.standing, requestURI.requestOptions);
+    const modeleRankingTeam = Object.create(ModeleRankingTeam());
+    const NBA_STATS_URL = `${requestURI.URI.standing}${req.body.date}`;
+    const resu = await modeleRankingTeam.callNbaStanding(NBA_STATS_URL, requestURI.requestOptions);
     const conferenceEastStanding = sendStanding(resu, 4);
     const conferenceWestStanding = sendStanding(resu, 5); 
     const standings = [ 
