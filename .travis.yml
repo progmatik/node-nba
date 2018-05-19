@@ -5,6 +5,7 @@ node_js:
   _ "9.7"
 
 install:
+  - nvm install 9.7
   - npm install
 
 script:
