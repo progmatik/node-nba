@@ -17,9 +17,9 @@ describe('Call Nba Standing', () => {
       modeleRankingTeam.callNbaStanding(NBA_STATS_URL, requestURI.requestOptions)
       .then((response) => {
         expect(response).to.be.an('object');
-        return done();
       })
       .catch(done);
+      return done();
     });
   });
 });
