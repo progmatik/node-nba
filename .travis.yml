@@ -3,6 +3,7 @@ cache:
   directories:
   - node_modules
 install:
+  - nvm alias default node
   - npm install
 script:
   - npm t
