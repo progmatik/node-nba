@@ -1,13 +1,10 @@
 language: node_js
-node_js:
-  - "iojs"
-  _ "9"
-
-install:
-  - npm install
-
-script: npm t
-
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+install:
+  - nvm install 9.7
+  - npm install
+script:
+  - npm t
+
