@@ -1,5 +1,5 @@
 before_install:
- - 'nvm ls-remote'
+ - 'nvm install nvm install 9.7'
 language: node_js
 node_js:
   _ "9.7"
