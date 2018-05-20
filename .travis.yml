@@ -7,4 +7,5 @@ install:
   - npm install
 script:
   - npm t
+  - npm run coverage
 
