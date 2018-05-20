@@ -8,4 +8,6 @@ install:
 script:
   - npm run build
   - npm t
+matrix:
+  fast_finish: true
 
