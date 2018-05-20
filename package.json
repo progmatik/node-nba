@@ -4,7 +4,7 @@
   "description": "node nba api",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-register --recursive --timeout 6000 --exit",
+    "test": "mocha --require babel-register --recursive --timeout 6000",
     "coverage": "cross-env NODE_ENV=test nyc --reporter=text  mocha test/**/*.js",
     "coverage-only": "cross-env NODE_ENV=test nyc --all --reporter=text mocha test/**/*.js --reporter=lcov --no-colors -R mocha-silent-reporter --recursive test/",
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
