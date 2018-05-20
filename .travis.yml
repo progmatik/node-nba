@@ -6,6 +6,5 @@ install:
   - nvm install 9.7
   - npm install
 script:
-  - npm run build
   - npm run test
 
