@@ -3,7 +3,7 @@ export default function ControllerRankingTeam(args) {
   this.idTeam = args.idTeam;
   this.leagueID = args.leagueID;
   this.seasonID = args.seasonID;
-  this.standingsDate = args.standingsDate; 
+  this.standingsDate = args.standingsDate;
   this.conference = args.conference;
   this.team = args.team;
   this.numberGamePlayed = args.numberGamePlayed;
@@ -13,7 +13,3 @@ export default function ControllerRankingTeam(args) {
   this.homeRecord = args.homeRecord;
   this.roadRecord = args.roadRecord;
 }
-
-ControllerRankingTeam.prototype.getRankingData = function(standings) {
-
-};

@@ -1,7 +1,7 @@
 import chai from 'chai';
-import ModeleRankingTeam from '../modele/modele_team.js';
-import ControllerRankingTeam from '../controller/controller_equipe.js';
-import requestURI from '../modele/nbaURI.js';
+import ModeleRankingTeam from '../src/modele/modele_team.js';
+import ControllerRankingTeam from '../src/controller/controller_equipe.js';
+import requestURI from '../src/modele/nbaURI.js';
 const expect = chai.expect;
 chai.use(require('dirty-chai'));
 
