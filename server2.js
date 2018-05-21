@@ -1,6 +1,7 @@
 import ModeleRankingTeam from './src/modele/modele_team.js';
 import requestURI from './src/modele/nbaURI.js';
 import ControllerRankingTeam from './src/controller/controller_equipe.js';
+import getNBAStandingByDate from './src/main_standing.js';
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -60,22 +61,8 @@ app.use(function (req, res, next) {
  *
  */
 app.post('/controller/equipe', async function(req, res) {
-  // Instanciate The Api Call
-  try {
-    const modeleRankingTeam = Object.create(ModeleRankingTeam());
-    const NBA_STATS_URL = `${requestURI.URI.standing}${req.body.date}`;
-    const resu = await modeleRankingTeam.callNbaStanding(NBA_STATS_URL, requestURI.requestOptions);
-    const conferenceEastStanding = sendStanding(resu, 4);
-    const conferenceWestStanding = sendStanding(resu, 5); 
-    const standings = [ 
-      conferenceEastStanding, 
-      conferenceWestStanding
-    ];
-    res.send(standings);
-  } catch (e) {
-
-    return e;
-  }
+  const standings = await getNBAStandingByDate(req.body.date);
+  res.send(standings);
 });
 
 app.listen(8080);

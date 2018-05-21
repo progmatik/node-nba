@@ -9,7 +9,7 @@ function ModeleRankingTeam() {
      * @param {Object} options
      * @return {Promise}
      */
-    callNbaStanding: async (url, options) =>
+    callNbaStanding: (url, options) =>
       got(url, options),
   };
 }
