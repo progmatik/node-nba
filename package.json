@@ -1,7 +1,7 @@
 {
   "name": "nba",
   "version": "1.0.0",
-  "description": "node nba api",
+  "description": "node nba api stats.nba.com",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha --require babel-register --recursive --timeout 6000 --exit",
