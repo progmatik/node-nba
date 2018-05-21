@@ -1,11 +1,11 @@
 {
   "name": "nba",
   "version": "1.0.0",
-  "description": "node nba api",
+  "description": "node nba api stats.nba.com",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha --require babel-register --recursive --timeout 6000 --exit",
-    "coverage": "cross-env NODE_ENV=test nyc --all --reporter=text --reporter=lcov mocha test/*.js",
+    "coverage": "cross-env NODE_ENV=test nyc --all --reporter=text mocha test/*.js --exit",
     "coverage-only": "cross-env NODE_ENV=test nyc --all --reporter=text mocha test/**/*.js --reporter=lcov --no-colors -R mocha-silent-reporter --recursive test/",
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
     "build": "rm -rf ./dist; babel ./ --out-dir dist --ignore ./.babelrc,./vue,./node_modules,./package.json,./npm-debug.log --copy-files",
