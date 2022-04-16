@@ -2,4 +2,4 @@
 # node-nba
 # Run API:
 npm start 
-nodemom dist/server2.js
+nodemon dist/server2.js
